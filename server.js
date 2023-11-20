@@ -1,10 +1,13 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors');
 const productRoutes = require('./routes/productRoutes');
 const cidadaoRoutes = require('./routes/cidadaoRoutes');
 const app = express()
 
 app.use(express.json())
+app.use(cors());
+
 //Rotas dos produtos
 app.use('/products', productRoutes);
 app.use('/cidadaos', cidadaoRoutes);

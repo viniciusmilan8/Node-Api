@@ -18,7 +18,7 @@ const cidadaoSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    endereco: {
+    rua: {
       type: String,
       required: true
     },

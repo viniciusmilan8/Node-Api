@@ -12,6 +12,6 @@ const atendimentosSchema = mongoose.Schema(
   }
 );
 
-const Atendimentos = mongoose.model('Acidentes', atendimentosSchema);
+const Atendimentos = mongoose.model('Atendimentos', atendimentosSchema);
 
 module.exports = Atendimentos;

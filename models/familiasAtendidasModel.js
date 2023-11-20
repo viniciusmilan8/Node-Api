@@ -24,6 +24,6 @@ const familiasAtendidasModel = mongoose.Schema(
   }
 );
 
-const FamiliasAtendidas = mongoose.model('Familias Atendidas', familiasAtendidasModel);
+const FamiliasAtendidas = mongoose.model('FamiliasAtendidas', familiasAtendidasModel);
 
 module.exports = FamiliasAtendidas;

@@ -2,10 +2,43 @@ const mongoose = require('mongoose');
 
 const atendimentosSchema = mongoose.Schema(
   {  
-    CpfResposavel: {
+    n_protocolo: {
+      type: Number,
+      required: true,
+    },
+    TipoAtendimento: {
       type: String,
-      required: [true, "Necessário o cpf do responsável"]
+      required: true,
+    }, 
+    CanalAtendimento: {
+      type: String,
+      required: true,
+    },  
+    NomeResponsavel: {
+      type: String,
+      required: true,
     },    
+    VistoriaRealizada: {
+      type: Boolean,
+      required: true,
+    }, 
+    TipoVistoria: {
+      type: String,
+      required: true,
+    }, 
+    DataSolicitacao: {
+      type: String,
+      required: true,
+    }, 
+    DataVistoria: {
+      type: String,
+      required: true,
+    }, 
+    EntregueItensAjuda: {
+      type: Boolean,
+      required: true,
+    }, 
+   
   },
   {
     timestamps: true

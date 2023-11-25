@@ -5,8 +5,15 @@ const User = require('../models/usuarioModel');
 // Rota de registro
 router.post('/register', async (req, res) => {
   try {
-    const { username, password } = req.body;
-    const newUser = new User({ username, password });
+    const { username, email, password } = req.body;
+
+    const existingUser = await User.findOne({ $or: [{ email }] });
+
+    if (existingUser) {
+      return res.status(400).json({ error: 'Email já está em uso' });
+    }
+
+    const newUser = new User({ username, email, password });
     const user = await newUser.save();
     res.status(201).json({ message: 'Usuário registrado com sucesso' });
   } catch (error) {
@@ -17,8 +24,8 @@ router.post('/register', async (req, res) => {
 // Rota de login
 router.post('/login', async (req, res) => {
   try {
-    const { username, password } = req.body;
-    const user = await User.findOne({ username });
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
 
     if (!user) {
       return res.status(401).json({ message: 'Nome de usuário ou senha incorretos' });

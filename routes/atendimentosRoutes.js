@@ -29,8 +29,37 @@ router.get('/atendimento', async (req, res) => {
 // Rota para criar um novo atendimento
 router.post('/cria_atendimento', async (req, res) => {
   try {
+    const {
+      n_protocolo,
+      TipoAtendimento,
+      CanalAtendimento,
+      NomeResponsavel,
+      VistoriaRealizada,
+      TipoVistoria,
+      DataSolicitacao,
+      DataVistoria,
+      EntregueItensAjuda,
+      pendente
+    } = req.body;
+
+    // Validar se todos os campos obrigatórios estão presentes
+    if (
+      !n_protocolo ||
+      !TipoAtendimento ||
+      !CanalAtendimento ||
+      !NomeResponsavel ||
+      VistoriaRealizada === undefined ||
+      !TipoVistoria ||
+      !DataSolicitacao ||
+      !DataVistoria ||
+      EntregueItensAjuda === undefined ||
+      pendente === undefined
+    ) {
+      return res.status(400).json({ message: 'Por favor, forneça todos os campos obrigatórios.' });
+    }
+
     const atendimento = await Atendimentos.create(req.body);
-    res.status(200).json(atendimento);
+    res.status(200).send('Atendimento criado com sucesso!');
   } catch (error) {
     console.error(error.message);
     res.status(500).json({ message: error.message });
@@ -38,7 +67,7 @@ router.post('/cria_atendimento', async (req, res) => {
 });
 
 // Rota para atualizar um atendimento existente
-router.put('/atualiza_atendimento', async (req, res) => {
+router.put('/atualiza_atendimento/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const atendimento = await Atendimentos.findByIdAndUpdate(id, req.body, { new: true });

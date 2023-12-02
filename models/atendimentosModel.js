@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const atendimentosSchema = mongoose.Schema(
   {  
     n_protocolo: {
-      type: Number,
+      type: String,
       required: true,
     },
     TipoAtendimento: {
@@ -38,7 +38,10 @@ const atendimentosSchema = mongoose.Schema(
       type: Boolean,
       required: true,
     }, 
-   
+    pendente: {
+      type: Boolean,
+      required: true,
+    }, 
   },
   {
     timestamps: true
